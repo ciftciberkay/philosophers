@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macbook6 <macbook6@student.42.fr>          +#+  +:+       +#+        */
+/*   By: beciftci <beciftci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/20 04:05:50 by macbook6          #+#    #+#             */
-/*   Updated: 2025/08/23 20:48:41 by macbook6         ###   ########.fr       */
+/*   Created: 2025/08/24 18:02:06 by beciftci          #+#    #+#             */
+/*   Updated: 2025/08/24 18:02:07 by beciftci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	fill_arg(t_data *datas, char **s, int flag)
 {
 	datas->nbr_philos = ft_atoi(s[1]);
-	datas->time_to_die = ft_atoi(s[2]);
-	datas->time_to_eat = ft_atoi(s[3]);
-	datas->time_to_sleep = ft_atoi(s[4]);
+	datas->time_to_die = ft_atoll(s[2]);
+	datas->time_to_eat = ft_atoll(s[3]);
+	datas->time_to_sleep = ft_atoll(s[4]);
 	if (flag == 1)
 	{
 		datas->must_eat = ft_atoi(s[5]);
@@ -50,8 +50,12 @@ int	value_control(char **s)
 		while (s[i][j])
 		{
 			flag = ft_isdigit(s[i][j]);
+			if (flag == 0)
+				break ;
 			j++;
 		}
+		if (flag == 0)
+			break ;
 		i++;
 	}
 	if (flag == 0)
@@ -67,14 +71,12 @@ int	main(int ac, char **av)
 	t_data	datas;
 	int		flag;
 
-	flag = 0;
+	flag = (ac == 6);
 	if (ac > 6 || ac < 5)
 	{
 		printf("Arg. Error!");
 		return (1);
 	}
-	if (av[5])
-		flag = 1;
 	if (value_control(av) == 0 || fill_arg(&datas, av, flag) == 0)
 		return (1);
 }
