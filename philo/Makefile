@@ -1,10 +1,10 @@
-NAME = philosophers
+NAME = philo
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -pthread
 
-SRC	=	main.c utils.c
+SRC	=	main.c utils.c inits.c simulation.c actions.c threads.c
 
 OBJ = $(SRC:.c=.o)
 
